@@ -12,19 +12,26 @@ import Toolbar from "@mui/material/Toolbar";
 
 import axios from "axios";
 
+import {useSelector, useDispatch} from "react-redux"
+import { fetchRadicals } from "../redux/slices/characterSlice";
+
 const drawerWidth = 240;
 
 const DashboardLeftSidebar = () => {
+  const radical = useSelector((state) => state.character);
+  const {radicalList, radicalLoading} = radical;
+  console.log("radicalList: ", radicalList)
+  const dispatch = useDispatch();
   const [loading, setLoading] = React.useState(true);
   useEffect(() => {
     const fetchRadical = async () => {
       const response = await axios.get(
         "http://ccdb.hemiola.com/characters/radicals"
       );
-      console.log("Api response: ", response);
+      dispatch(fetchRadicals(response.data));
     };
     fetchRadical();
-  });
+  },[]);
 
 
   return (
