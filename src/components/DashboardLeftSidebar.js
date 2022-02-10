@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 // Material UI Imports
+import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
+import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -12,28 +14,33 @@ import Toolbar from "@mui/material/Toolbar";
 
 import axios from "axios";
 
-import {useSelector, useDispatch} from "react-redux"
+import { useSelector, useDispatch } from "react-redux";
 import { fetchRadicals } from "../redux/slices/characterSlice";
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const DashboardLeftSidebar = () => {
   const radical = useSelector((state) => state.character);
-  const {radicalList, radicalLoading} = radical;
-  console.log("radicalList: ", radicalList)
+  const { radicalList, radicalLoading } = radical;
+  console.log("Rad: ", radicalList)
   const dispatch = useDispatch();
-  const [loading, setLoading] = React.useState(true);
   useEffect(() => {
     const fetchRadical = async () => {
       const response = await axios.get(
         "http://ccdb.hemiola.com/characters/radicals"
       );
-      dispatch(fetchRadicals(response.data));
+        // converted array to Set to remove duplicates
+        const uniqueSet = new Set(response.data.map((o) => o.radical));
+        // converted Set back to array
+        const uniqueArray = Array.from(uniqueSet);
+      dispatch(fetchRadicals(uniqueArray));
     };
     fetchRadical();
-  },[]);
+  }, []);
 
-
+  // if (radicalLoading) {
+  //   return <></>;
+  // }
   return (
     <Drawer
       sx={{
@@ -47,20 +54,43 @@ const DashboardLeftSidebar = () => {
       variant="permanent"
       anchor="left"
     >
-      <Toolbar />
+      <Toolbar>
+        <Grid container>
+          <Grid item>黄</Grid>
+        </Grid>
+      </Toolbar>
       <Divider />
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
+      <Grid container spacing={2} p={1}>
+        <Grid item sm={12}>
+          <Button variant="outlined" fullWidth>
+            Octopus Deploy
+          </Button>
+        </Grid>
+        <Grid item sm={12}>
+          <Button variant="outlined" fullWidth>
+            Doil
+          </Button>
+        </Grid>
+        <Grid item sm={12}>
+          <Button variant="outlined" fullWidth>
+            Aptugo
+          </Button>
+        </Grid>
+      </Grid>
 
+      <Divider />
+      {radicalLoading === false ? (
+        <List>
+          {radicalList.map((text, index) => (
+            <ListItem button onClick={()=>console.log("clicked: ", text)} key={index}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={`Radical ${text}`} />
+            </ListItem>
+          ))}
+        </List>
+      ) : null}
     </Drawer>
   );
 };
