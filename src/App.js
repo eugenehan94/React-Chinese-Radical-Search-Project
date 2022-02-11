@@ -1,4 +1,6 @@
 // ccdb.hemiola.com/
+//http://ccdb.hemiola.com/characters/radicals/85?filter=gb - chinese characters
+//http://ccdb.hemiola.com/characters/radicals/85?filter=gb&fields=kDefinition -definition
 import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home"
 import Dashboard from "./Pages/Dashboard"
