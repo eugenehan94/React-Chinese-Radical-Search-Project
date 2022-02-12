@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 // Material UI Imports
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
@@ -12,35 +12,21 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import Toolbar from "@mui/material/Toolbar";
 
-import axios from "axios";
-
+import { ToHomeButton } from "../styles/DashboardLeftSidebar";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchRadicals } from "../redux/slices/characterSlice";
 
+import { Link } from "react-router-dom";
+
+import octopusDeploy from "../images/svg/octopusDeploy.svg"
+import doli from "../images/svg/doli.svg";
+import aptugo from "../images/svg/aptugo.svg"
+import { selectedRadical } from "../redux/slices/characterSlice";
 const drawerWidth = 300;
 
 const DashboardLeftSidebar = () => {
   const radical = useSelector((state) => state.character);
-  const { radicalList, radicalLoading } = radical;
-  console.log("Rad: ", radicalList)
   const dispatch = useDispatch();
-  useEffect(() => {
-    const fetchRadical = async () => {
-      const response = await axios.get(
-        "http://ccdb.hemiola.com/characters/radicals"
-      );
-        // converted array to Set to remove duplicates
-        const uniqueSet = new Set(response.data.map((o) => o.radical));
-        // converted Set back to array
-        const uniqueArray = Array.from(uniqueSet);
-      dispatch(fetchRadicals(uniqueArray));
-    };
-    fetchRadical();
-  }, []);
-
-  // if (radicalLoading) {
-  //   return <></>;
-  // }
+  const { radicalList  } = radical;
   return (
     <Drawer
       sx={{
@@ -55,42 +41,70 @@ const DashboardLeftSidebar = () => {
       anchor="left"
     >
       <Toolbar>
-        <Grid container>
-          <Grid item>黄</Grid>
+        <Grid container justifyContent="center">
+          <Grid item>
+            <ToHomeButton
+              component={Link}
+              to="/"
+              variant="text"
+              disableRipple
+              size="small"
+            >
+              黄
+            </ToHomeButton>
+          </Grid>
         </Grid>
       </Toolbar>
       <Divider />
       <Grid container spacing={2} p={1}>
         <Grid item sm={12}>
-          <Button variant="outlined" fullWidth>
-            Octopus Deploy
+          <Button
+            variant="outlined"
+            fullWidth
+            href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
+            target="_blank"
+          >
+            <img src={octopusDeploy} alt="Octopus Deploy" />
           </Button>
         </Grid>
         <Grid item sm={12}>
-          <Button variant="outlined" fullWidth>
-            Doil
+          <Button
+            variant="outlined"
+            fullWidth
+            href="https://www.doit-intl.com/flexsave/?utm_source=materialui&utm_medium=referral"
+            target="_blank"
+          >
+            <img src={doli} alt="doli" />
           </Button>
         </Grid>
         <Grid item sm={12}>
-          <Button variant="outlined" fullWidth>
-            Aptugo
+          <Button
+            variant="outlined"
+            fullWidth
+            href="https://www.aptugo.com/landing"
+            target="_blank"
+          >
+            <img src={aptugo} alt="aptugo" />
           </Button>
         </Grid>
       </Grid>
 
       <Divider />
-      {radicalLoading === false ? (
-        <List>
-          {radicalList.map((text, index) => (
-            <ListItem button onClick={()=>console.log("clicked: ", text)} key={index}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={`Radical ${text}`} />
-            </ListItem>
-          ))}
-        </List>
-      ) : null}
+
+      <List>
+        {radicalList.map((text, index) => (
+          <ListItem
+            button
+            onClick={() => dispatch(selectedRadical(text))}
+            key={index}
+          >
+            <ListItemIcon>
+              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+            </ListItemIcon>
+            <ListItemText primary={`Radical ${text}`} />
+          </ListItem>
+        ))}
+      </List>
     </Drawer>
   );
 };
