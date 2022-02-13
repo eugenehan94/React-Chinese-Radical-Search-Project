@@ -39,6 +39,7 @@ const DashboardLeftSidebar = () => {
       }}
       variant="permanent"
       anchor="left"
+      // open={false}
     >
       <Toolbar>
         <Grid container justifyContent="center">
