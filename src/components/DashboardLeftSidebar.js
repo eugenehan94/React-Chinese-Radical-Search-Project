@@ -10,23 +10,33 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import HomeIcon from "@mui/icons-material/Home";
 
-import { ToHomeButton } from "../styles/DashboardLeftSidebar";
-import { useSelector, useDispatch } from "react-redux";
-
+// React router imports
 import { Link } from "react-router-dom";
 
-import octopusDeploy from "../images/svg/octopusDeploy.svg"
+// Image and SVG imports
+import octopusDeploy from "../images/svg/octopusDeploy.svg";
 import doli from "../images/svg/doli.svg";
-import aptugo from "../images/svg/aptugo.svg"
+import aptugo from "../images/svg/aptugo.svg";
+
+// Redux toolkit imports
+import { useSelector, useDispatch } from "react-redux";
 import { selectedRadical } from "../redux/slices/characterSlice";
+import { leftSidebarOpen } from "../redux/slices/characterSlice";
+
+// Material UI styled imports
+import { DrawerHeader } from "../styles/DashboardLeftSidebar";
+import { ToHomeButton } from "../styles/DashboardLeftSidebar";
+
 const drawerWidth = 300;
 
 const DashboardLeftSidebar = () => {
-  const radical = useSelector((state) => state.character);
+  const reducers = useSelector((state) => state.character);
   const dispatch = useDispatch();
-  const { radicalList  } = radical;
+  const { radicalList, open } = reducers;
   return (
     <Drawer
       sx={{
@@ -37,12 +47,12 @@ const DashboardLeftSidebar = () => {
           boxSizing: "border-box",
         },
       }}
-      variant="permanent"
+      variant="persistent"
       anchor="left"
-      // open={false}
+      open={open}
     >
-      <Toolbar>
-        <Grid container justifyContent="center">
+      <DrawerHeader>
+        <Grid container alignItem="center">
           <Grid item>
             <ToHomeButton
               component={Link}
@@ -51,11 +61,15 @@ const DashboardLeftSidebar = () => {
               disableRipple
               size="small"
             >
-              黄
+              <HomeIcon />
             </ToHomeButton>
           </Grid>
         </Grid>
-      </Toolbar>
+        <IconButton onClick={() => dispatch(leftSidebarOpen(false))}>
+          <ChevronLeftIcon />
+        </IconButton>
+      </DrawerHeader>
+
       <Divider />
       <Grid container spacing={2} p={1}>
         <Grid item sm={12}>

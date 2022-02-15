@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  open: false,
   radicalList: null,
   radicalLoading: true,
   radicalSelected: "1",
@@ -14,6 +15,9 @@ export const characterSlice = createSlice({
   name: "character",
   initialState,
   reducers: {
+    leftSidebarOpen: (state, action) => {
+      state.open = action.payload
+    },
     fetchRadicals: (state, action) => {
       state.radicalList = action.payload;
       state.radicalLoading = false;
@@ -37,6 +41,7 @@ export const {
   selectedRadical,
   fetchChineseCharacters,
   fetchChineseCharactersMeaning,
+  leftSidebarOpen,
 } = characterSlice.actions;
 
 export default characterSlice.reducer;

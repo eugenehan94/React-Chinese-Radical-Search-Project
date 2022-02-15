@@ -6,13 +6,16 @@ import Paper from "@mui/material/Paper";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
-import axios from "axios";
+import {Main} from "../styles/DashboardContent"
 
+import axios from "axios";
+// Redux toolkit imports
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchChineseCharacters,
   fetchChineseCharactersMeaning,
 } from "../redux/slices/characterSlice";
+
 const DashboardContent = () => {
   const reducer = useSelector((state) => state.character);
   const {
@@ -21,9 +24,9 @@ const DashboardContent = () => {
     chineseCharactersList,
     chineseCharacterMeaning,
     chineseCharacterMeaningLoading,
+    open
   } = reducer;
   const dispatch = useDispatch();
-  console.log("content reducer: ", reducer);
   //https://stackoverflow.com/questions/39127989/create-an-object-from-an-array-of-keys-and-an-array-of-values
   useEffect(() => {
     const fetchChineseChar = async (selected) => {
@@ -46,7 +49,7 @@ const DashboardContent = () => {
   }, [radicalSelected, dispatch]);
   if (chineseCharactersLoading || chineseCharacterMeaningLoading) return <></>;
   return (
-    <Box component="main" sx={{ p: 4, width: "100%" }}>
+    <Main open={open} sx={{ p: 4, width: "100%" }}>
       <Toolbar />
       <Paper elevation={4} sx={{ p: 3 }}>
         <Typography variant="h2">Radical {radicalSelected}</Typography>
@@ -73,7 +76,7 @@ const DashboardContent = () => {
           <Typography>Developed by: </Typography>
         </Grid>
       </Grid>
-    </Box>
+    </Main>
   );
 };
 
