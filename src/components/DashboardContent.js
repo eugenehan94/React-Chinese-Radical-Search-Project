@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+// Material UI imports
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
@@ -6,48 +7,22 @@ import Paper from "@mui/material/Paper";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
+// Material UI styled imports
 import {Main} from "../styles/DashboardContent"
 
-import axios from "axios";
 // Redux toolkit imports
 import { useSelector, useDispatch } from "react-redux";
-import {
-  fetchChineseCharacters,
-  fetchChineseCharactersMeaning,
-} from "../redux/slices/characterSlice";
 
 const DashboardContent = () => {
   const reducer = useSelector((state) => state.character);
   const {
     radicalSelected,
-    chineseCharactersLoading,
     chineseCharactersList,
     chineseCharacterMeaning,
-    chineseCharacterMeaningLoading,
     open
   } = reducer;
   const dispatch = useDispatch();
-  //https://stackoverflow.com/questions/39127989/create-an-object-from-an-array-of-keys-and-an-array-of-values
-  useEffect(() => {
-    const fetchChineseChar = async (selected) => {
-      const chineseChar = axios.get(
-        `http://ccdb.hemiola.com/characters/radicals/${selected}?filter=gb`
-      );
-      const chineseCharDefinition = axios.get(
-        `http://ccdb.hemiola.com/characters/radicals/${selected}?filter=gb&fields=kDefinition`
-      );
-      await axios.all([chineseChar, chineseCharDefinition]).then(
-        axios.spread((...responses) => {
-          const responseOne = responses[0];
-          const responseTwo = responses[1];
-          dispatch(fetchChineseCharacters(responseOne.data));
-          dispatch(fetchChineseCharactersMeaning(responseTwo.data));
-        })
-      );
-    };
-    fetchChineseChar(radicalSelected);
-  }, [radicalSelected, dispatch]);
-  if (chineseCharactersLoading || chineseCharacterMeaningLoading) return <></>;
+
   return (
     <Main open={open} sx={{ p: 4, width: "100%" }}>
       <Toolbar />
