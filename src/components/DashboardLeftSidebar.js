@@ -31,7 +31,7 @@ import { leftSidebarOpen } from "../redux/slices/characterSlice";
 import { DrawerHeader } from "../styles/DashboardLeftSidebar";
 import { ToHomeButton } from "../styles/DashboardLeftSidebar";
 
-const drawerWidth = 300;
+const drawerWidth = 280;
 
 const DashboardLeftSidebar = () => {
   const reducers = useSelector((state) => state.character);
@@ -52,7 +52,7 @@ const DashboardLeftSidebar = () => {
       open={open}
     >
       <DrawerHeader>
-        <Grid container alignItem="center">
+        <Grid container alignItems="center">
           <Grid item>
             <ToHomeButton
               component={Link}

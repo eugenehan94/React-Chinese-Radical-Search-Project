@@ -8,7 +8,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
 // Material UI styled imports
-import {Main} from "../styles/DashboardContent"
+import { Main, ContentPaper, ContentTitle } from "../styles/DashboardContent";
 
 // Redux toolkit imports
 import { useSelector, useDispatch } from "react-redux";
@@ -24,10 +24,10 @@ const DashboardContent = () => {
   const dispatch = useDispatch();
 
   return (
-    <Main open={open} sx={{ p: 4, width: "100%" }}>
+    <Main open={open}>
       <Toolbar />
-      <Paper elevation={4} sx={{ p: 3 }}>
-        <Typography variant="h2">Radical {radicalSelected}</Typography>
+      <ContentPaper elevation={4}>
+        <ContentTitle variant="h2">Radical {radicalSelected}</ContentTitle>
         <Divider />
         {chineseCharactersList.map((character, index) => (
           <Box key={index} sx={{ mt: 3 }}>
@@ -44,9 +44,9 @@ const DashboardContent = () => {
             <Divider />
           </Box>
         ))}
-      </Paper>
+      </ContentPaper>
 
-      <Grid container justifyContent="center" sx={{pt: 1}}>
+      <Grid container justifyContent="center" sx={{ pt: 1 }}>
         <Grid item>
           <Typography>Developed by: </Typography>
         </Grid>

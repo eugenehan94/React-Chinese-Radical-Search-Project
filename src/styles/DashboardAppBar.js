@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
 
-const drawerWidth = 300;
+const drawerWidth = 280;
 
 // Notes: "shouldForwardProp" could be called anything - but has to be there to work
 // the ... (spread operator) has to be there to indicate if open is true condition to be valid
