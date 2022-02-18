@@ -8,7 +8,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
 // Material UI styled imports
-import { Main, ContentPaper, ContentTitle } from "../styles/DashboardContent";
+import {
+  Main,
+  ContentPaper,
+  ContentTitle,
+  ChineseCharacters,
+  ChineseCharactersMeaning,
+} from "../styles/DashboardContent";
 
 // Redux toolkit imports
 import { useSelector, useDispatch } from "react-redux";
@@ -31,14 +37,14 @@ const DashboardContent = () => {
         <Divider />
         {chineseCharactersList.map((character, index) => (
           <Box key={index} sx={{ mt: 3 }}>
-            <Typography variant="h3" sx={{ fontWeight: "bold" }}>
+            <ChineseCharacters variant="h3">
               {character.string}
-            </Typography>
+            </ChineseCharacters>
             {chineseCharacterMeaning.map((meaning, i) => (
               <Box key={i}>
-                <Typography paragraph>
+                <ChineseCharactersMeaning paragraph>
                   {index === i ? meaning.kDefinition : null}
-                </Typography>
+                </ChineseCharactersMeaning>
               </Box>
             ))}
             <Divider />

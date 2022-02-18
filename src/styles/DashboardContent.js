@@ -34,9 +34,22 @@ export const ContentPaper = styled(Paper)(({ theme }) => ({
 }));
 
 export const ContentTitle = styled(Typography)(({theme}) => ({
-
+  marginTop: theme.spacing(2),
+  marginBottom: theme.spacing(2),
   [theme.breakpoints.down("sm")]: {
     textAlign: "center"
   }
+}))
 
+export const ChineseCharacters = styled(Typography)(({theme}) => ({
+  fontWeight: "bold",
+  [theme.breakpoints.down("sm")]: {
+    textAlign: "center"
+  }
+}))
+
+export const ChineseCharactersMeaning = styled(Typography)(({theme}) => ({
+  [theme.breakpoints.down("sm")]: {
+    textAlign: "center"
+  }
 }))
