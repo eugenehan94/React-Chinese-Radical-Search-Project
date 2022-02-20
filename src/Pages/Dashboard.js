@@ -53,9 +53,7 @@ const Dashboard = () => {
   }, [dispatch, radicalSelected]);
 
   if (
-    radicalLoading ||
-    chineseCharactersLoading ||
-    chineseCharacterMeaningLoading
+    radicalLoading
   ) {
     return <></>;
   }

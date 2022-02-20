@@ -30,7 +30,7 @@ export const Main = styled("main", {
 
 export const ContentPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(3),
-  width: "100%"
+  width: "100%",
 }));
 
 export const ContentTitle = styled(Typography)(({theme}) => ({

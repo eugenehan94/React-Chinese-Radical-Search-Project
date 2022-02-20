@@ -13,3 +13,12 @@ export const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
 }));
+
+export const ButtonsContainer = styled("div")(({theme}) => ({
+  padding: theme.spacing(1)
+}))
+export const ButtonIcon = styled(Button)(({theme}) => ({
+  marginTop: theme.spacing(1),
+  marginBottom: theme.spacing(1)
+
+}))

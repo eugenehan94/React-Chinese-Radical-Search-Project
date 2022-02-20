@@ -23,6 +23,8 @@ export const characterSlice = createSlice({
       state.radicalLoading = false;
     },
     selectedRadical: (state, action) => {
+      state.chineseCharactersLoading = true;
+      state.chineseCharactersLoading = true;
       state.radicalSelected = action.payload;
     },
     fetchChineseCharacters: (state, action) => {
