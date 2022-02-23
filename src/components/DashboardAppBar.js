@@ -17,7 +17,6 @@ const DashboardAppBar = () => {
   const { open } = reducers;
   const dispatch = useDispatch();
   return (
-    <>
       <AppBar position="fixed" elevation={1} open={open}>
         <Toolbar>
           <IconButton
@@ -33,7 +32,6 @@ const DashboardAppBar = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-    </>
   );
 };
 

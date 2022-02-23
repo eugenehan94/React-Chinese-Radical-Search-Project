@@ -1,6 +1,5 @@
 import React from "react";
 // Material UI Imports
-import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import Grid from "@mui/material/Grid";
@@ -41,7 +40,7 @@ const DashboardLeftSidebar = () => {
 
   const reducers = useSelector((state) => state.character);
   const dispatch = useDispatch();
-  const { radicalList, open } = reducers;
+  const { radicalList, open, radicalSelected } = reducers;
   React.useEffect(() => {
     const handleWindowResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleWindowResize);
@@ -51,9 +50,13 @@ const DashboardLeftSidebar = () => {
   }, []);
 
   const listClickHandler = (radChoice) => {
+    if (radChoice === radicalSelected){
+      return;
+    }
     if (width <= 700) {
-      dispatch(leftSidebarOpen(false));
+      
       dispatch(selectedRadical(radChoice));
+      dispatch(leftSidebarOpen(false));
     } else {
       dispatch(selectedRadical(radChoice));
     }

@@ -19,8 +19,6 @@ const Dashboard = () => {
   const {
     radicalLoading,
     radicalSelected,
-    chineseCharactersLoading,
-    chineseCharacterMeaningLoading,
   } = radical;
   const dispatch = useDispatch();
   //https://stackoverflow.com/questions/39127989/create-an-object-from-an-array-of-keys-and-an-array-of-values
@@ -52,9 +50,7 @@ const Dashboard = () => {
     fetchRadical(radicalSelected);
   }, [dispatch, radicalSelected]);
 
-  if (
-    radicalLoading
-  ) {
+  if (radicalLoading) {
     return <></>;
   }
 
