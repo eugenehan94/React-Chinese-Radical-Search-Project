@@ -1,7 +1,6 @@
 import React from "react";
 
 // Material UI imports
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";

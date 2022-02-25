@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 // Material UI imports
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -16,7 +16,7 @@ import {
 } from "../styles/DashboardContent";
 
 // Redux toolkit imports
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const DashboardContent = () => {
   const reducer = useSelector((state) => state.character);
@@ -28,7 +28,6 @@ const DashboardContent = () => {
     chineseCharactersLoading,
     chineseCharacterMeaningLoading,
   } = reducer;
-  const dispatch = useDispatch();
 
   if (chineseCharactersLoading || chineseCharacterMeaningLoading) {
     return (
