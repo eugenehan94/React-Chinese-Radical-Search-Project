@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/React-Chinese-Radical-Search-Project/static/css/main.e6c13ad2.css",
+    "main.js": "/React-Chinese-Radical-Search-Project/static/js/main.dd570327.js",
+    "static/media/desktopBirdsEyeView.jpg": "/React-Chinese-Radical-Search-Project/static/media/desktopBirdsEyeView.849cf17d2a5a92a838db.jpg",
+    "static/media/octopusDeploy.svg": "/React-Chinese-Radical-Search-Project/static/media/octopusDeploy.e30b7e3a52a85741b32d5744b391001e.svg",
+    "static/media/aptugo.svg": "/React-Chinese-Radical-Search-Project/static/media/aptugo.69aaece19d81cf4372905b80a4524fe3.svg",
+    "static/media/doli.svg": "/React-Chinese-Radical-Search-Project/static/media/doli.d078ef2edeaa3ebad8a96536a39319b7.svg",
+    "index.html": "/React-Chinese-Radical-Search-Project/index.html",
+    "main.e6c13ad2.css.map": "/React-Chinese-Radical-Search-Project/static/css/main.e6c13ad2.css.map",
+    "main.dd570327.js.map": "/React-Chinese-Radical-Search-Project/static/js/main.dd570327.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.dd570327.js"
+  ]
+}
