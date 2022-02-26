@@ -1,3 +1,11 @@
+# Chinese Radical Lookup Project
+
+GitHub pages will not call the API due to API being unsecured by https
+
+### Demo
+![chineseRadicalProject](https://user-images.githubusercontent.com/59939048/155820425-6f04f64b-236a-4c3b-a39c-ba82491d9c2f.gif)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
